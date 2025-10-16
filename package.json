@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "@jsonresume/jsonresume-theme-class": "^0.4.2",
+    "@jsonresume/jsonresume-theme-professional": "^1.0.18",
+    "jsonresume-theme-elegant": "^1.16.1",
+    "jsonresume-theme-even": "^0.26.1",
+    "jsonresume-theme-professional": "^1.1.0",
+    "puppeteer": "^24.25.0",
+    "resumed": "^6.1.0",
+    "styled-components": "^6.1.19"
+  }
+}

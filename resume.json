@@ -1,0 +1,97 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
+  "basics": {
+    "name": "Riccardo Cecchi",
+    "label": "Software Engineer",
+    "image": "https://ricccec.github.io/resume/assets/photo.jpg",
+    "email": "riccardo.cecchi2@gmail.com",
+    "phone": "(+39) 329-0693335 ",
+    "url": "https://github.com/ricccec/",
+    "location": {
+      "address": "Via delle Palme, 1",
+      "postalCode": "63065",
+      "city": "Ripatransone (AP)",
+      "countryCode": "IT"
+    }
+  },
+  "work": [
+    {
+      "company": "Cyber Dyne s.r.l.",
+      "position": "Software Engineer – Team Lead",
+      "summary": "Designed and implemented multi-objective evolutionary optimization algorithms for the Kimeme platform; led delivery team.",
+      "highlights": [
+        "Java",
+        "MongoDB",
+        "RabbitMQ",
+        "Git"
+      ]
+    },
+    {
+      "company": "ERSistemi s.r.l.",
+      "position": "Software Developer",
+      "summary": "Developed tools to support SCADA system operations for manufacturing.",
+      "highlights": [
+        "VBA",
+        "MySQL"
+      ]
+    },
+    {
+      "company": "ENEA Research Center, Frascati (Rome)",
+      "position": "PhD Researcher",
+      "summary": "Conducted research on wireless signal propagation in harsh environments, sensor tech, and digital control systems.",
+      "highlights": [
+        "Python",
+        "HDL",
+        "FPGA",
+        "LabView",
+        "Matlab",
+        "Simulink",
+        "FEKO"
+      ]
+    },
+    {
+      "company": "Università Politecnica delle Marche",
+      "position": "Intern",
+      "summary": "Ported JVoiceXML VXML interpreter to Android."
+    }
+  ],
+  "education": [
+    {
+      "institution": "Università degli Studi dell’Aquila",
+      "area": "Software Engineering and Automation",
+      "studyType": "MSc",
+      "score": "Top honors (laude)"
+    }
+  ],
+  "projects": [
+    {
+      "name": "Crystal Studio",
+      "description": "A GBStudio-style IDE built on top of the pret/pokecrystal disassembly to edit game content and manage the full Game Boy ROM workflow.",
+      "url": "https://github.com/ricccec/crystal-studio",
+      "keywords": [
+        "Electron",
+        "Vite",
+        "React",
+        "TypeScript"
+      ]
+    },
+    {
+      "name": "tile_based_engine",
+      "description": "A lightweight 2D tile-based game engine, designed for rapid prototyping and educational purposes.",
+      "url": "https://github.com/ricccec/tile_based_engine"
+    }
+  ],
+  "publications": [
+    {
+      "name": "Application of Wireless Technologies in a Nuclear Plant: Evaluation of Electromagnetic Propagation With Different Computational Techniques",
+      "publisher": "Journal of Nuclear Engineering and Radiation Science",
+      "releaseDate": "2020-01-29",
+      "url": "https://bit.ly/4n9w2qX"
+    }
+  ],
+  "meta": {
+    "canonical": "https://raw.githubusercontent.com/jsonresume/resume-schema/master/sample.resume.json",
+    "version": "v1.0.0",
+    "lastModified": "2017-12-24T15:53:00"
+  }
+}
