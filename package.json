@@ -2,14 +2,19 @@
   "scripts": {
     "validate": "resumed validate resume.json",
     "build:html": "resumed render resume.json --theme jsonresume-theme-even -o index.html",
+    "build:html:custom": "resumed render resume.json --theme jsonresume-theme-custom -o index.html",
     "build:pdf": "resumed export resume.json --theme jsonresume-theme-even --output assets/resume.pdf",
+    "build:pdf:custom": "resumed export resume.json --theme jsonresume-theme-custom --output assets/resume.pdf",
     "build": "npm run validate && npm run build:html && npm run build:pdf",
+    "build:custom": "npm run validate && npm run build:html:custom && npm run build:pdf:custom",
     "serve": "serve .",
-    "dev": "npm run build && npm run serve"
+    "dev": "npm run build && npm run serve",
+    "dev:custom": "npm run build:custom && npm run serve"
   },
   "dependencies": {
     "@jsonresume/jsonresume-theme-class": "^0.4.2",
     "@jsonresume/jsonresume-theme-professional": "^1.0.18",
+    "jsonresume-theme-custom": "file:themes/custom",
     "jsonresume-theme-elegant": "^1.16.1",
     "jsonresume-theme-even": "^0.26.1",
     "jsonresume-theme-professional": "^1.1.0",

@@ -15,17 +15,37 @@ npm install --legacy-peer-deps
 
 **Build everything (validate + HTML + PDF):**
 ```bash
-npm run build
+npm run build              # Using jsonresume-theme-even
+npm run build:custom       # Using custom theme
 ```
 
 **Individual commands:**
 ```bash
-npm run validate      # Validate resume.json
-npm run build:html    # Export to index.html
-npm run build:pdf     # Export to assets/resume.pdf
-npm run serve         # Serve locally at http://localhost:3000
-npm run dev           # Build and serve
+npm run validate           # Validate resume.json
+npm run build:html         # Export to index.html (even theme)
+npm run build:html:custom  # Export to index.html (custom theme)
+npm run build:pdf          # Export to assets/resume.pdf (even theme)
+npm run build:pdf:custom   # Export to assets/resume.pdf (custom theme)
+npm run serve              # Serve locally at http://localhost:3000
+npm run dev                # Build and serve (even theme)
+npm run dev:custom         # Build and serve (custom theme)
 ```
+
+### Custom Theme Development
+
+A custom theme is available in `themes/custom/` based on `jsonresume-theme-even`.
+
+**After making changes to the custom theme, reinstall it:**
+```bash
+npm install ./themes/custom --legacy-peer-deps
+```
+
+Then rebuild:
+```bash
+npm run build:custom
+```
+
+See [`themes/custom/README.md`](themes/custom/README.md) for more details.
 
 ## Manual Export
 

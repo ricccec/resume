@@ -1,0 +1,7 @@
+﻿{
+  "name": "jsonresume-theme-custom",
+  "version": "0.1.0",
+  "description": "Custom JSON Resume theme",
+  "type": "module",
+  "main": "./index.js"
+}
