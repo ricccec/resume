@@ -2,7 +2,7 @@
 
 Read it <a href="https://ricccec.github.io/resume/" target="_blank">here</a> or download it <a href="https://ricccec.github.io/resume/assets/resume.pdf" target="_blank">here</a>.
 
-This repository contains my resume in [JSON Resume](https://jsonresume.org/) format, along with related assets (photo, QR code, etc.). The resume is exported to HTML using the [even](https://github.com/rbardini/jsonresume-theme-even) theme and to PDF using a custom theme.
+This repository contains my resume in [JSON Resume](https://jsonresume.org/) format, along with related assets (photo, QR code, etc.). The resume is exported to HTML using the [Even](https://github.com/rbardini/jsonresume-theme-even) theme and to PDF using a custom theme.
 
 The custom theme was built in `theme-src/`, based on [Rafael Bardini's jsonresume-theme-even](https://github.com/rbardini/jsonresume-theme-even), with significant modifications to the styling and layout. The live preview editor also comes from his repository.
 
@@ -59,8 +59,6 @@ A custom theme is available in `theme-src/`.
    npm run build            # Generate resume with new theme
    ```
 
-See [`themes/custom/README.md`](themes/custom/README.md) for more details.
-
 ## Manual Export
 
 **Export to HTML using Resumed:**
@@ -71,4 +69,5 @@ npx resumed render resume.json --theme jsonresume-theme-even -o index.html
 **Export to PDF using Resumed:**
 ```bash
 npx resumed export resume.json --theme jsonresume-theme-even --output assets/resume.pdf
+
 ```
