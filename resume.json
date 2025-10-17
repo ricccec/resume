@@ -17,8 +17,6 @@
   "work": [
     {
       "location": "Cyber Dyne s.r.l.",
-      "startDate": "2013-01-01",
-      "endDate": "2014-01-01",
       "position": "Software Engineer – Team Lead",
       "summary": "Designed and implemented multi-objective evolutionary optimization algorithms for the Kimeme platform; led delivery team.",
       "highlights": [
@@ -80,11 +78,6 @@
         "React",
         "TypeScript"
       ]
-    },
-    {
-      "name": "Custom Tile-based Game Engine",
-      "description": "A lightweight 2D tile-based game engine written in Java, designed for rapid prototyping and educational purposes.",
-      "url": "https://github.com/ricccec/tile_based_engine"
     }
   ],
   "publications": [
