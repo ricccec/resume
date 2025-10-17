@@ -6,9 +6,32 @@ This repository contains my resume in [JSON Resume](https://jsonresume.org/) for
 
 ## Quick Start
 
-Install dependencies:
+### First Time Setup
+
+1. Install dependencies:
+   ```bash
+   npm install --legacy-peer-deps
+   ```
+
+2. Build custom theme:
+   ```bash
+   npm run theme:install    # Install theme-src dependencies
+   npm run theme:rebuild    # Build and link custom theme
+   ```
+
+3. Build resume:
+   ```bash
+   npm run build:custom     # Generate index.html and assets/resume.pdf
+   ```
+
+4. Preview:
+   ```bash
+   npm run serve           # View at http://localhost:3000
+   ```
+
+**Or use the all-in-one command:**
 ```bash
-npm install --legacy-peer-deps
+npm run theme:dev          # Builds theme, generates resume, and serves
 ```
 
 ### Build Scripts
@@ -33,16 +56,19 @@ npm run dev:custom         # Build and serve (custom theme)
 
 ### Custom Theme Development
 
-A custom theme is available in `themes/custom/` based on `jsonresume-theme-even`.
+A custom theme is available in `theme-src/` (source) and `themes/custom/` (built version).
 
-**After making changes to the custom theme, reinstall it:**
-```bash
-npm install ./themes/custom --legacy-peer-deps
-```
+**Making changes to the theme:**
+1. Edit files in `theme-src/`
+2. Rebuild:
+   ```bash
+   npm run theme:rebuild    # Build, copy to themes/custom/dist, and link
+   npm run build:custom     # Generate resume with new theme
+   ```
 
-Then rebuild:
+**Or use the quick iteration command:**
 ```bash
-npm run build:custom
+npm run theme:dev          # Rebuilds everything and serves
 ```
 
 See [`themes/custom/README.md`](themes/custom/README.md) for more details.

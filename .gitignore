@@ -20,3 +20,8 @@ coverage/
 # Backups / temp
 *.bak
 *.orig
+
+# Theme development
+theme-src/dist/
+theme-src/node_modules/
+themes/custom/dist/

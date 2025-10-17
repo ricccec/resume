@@ -9,7 +9,15 @@
     "build:custom": "npm run validate && npm run build:html:custom && npm run build:pdf:custom",
     "serve": "serve .",
     "dev": "npm run build && npm run serve",
-    "dev:custom": "npm run build:custom && npm run serve"
+    "dev:custom": "npm run build:custom && npm run serve",
+    "theme:install": "cd theme-src && npm install",
+    "theme:build": "cd theme-src && npm run build",
+    "theme:copy": "if not exist themes\\custom\\dist mkdir themes\\custom\\dist && xcopy /E /I /Y theme-src\\dist\\* themes\\custom\\dist",
+    "theme:link": "npm uninstall jsonresume-theme-custom & npm install ./themes/custom --legacy-peer-deps",
+    "theme:rebuild": "npm run theme:build && npm run theme:copy && npm run theme:link",
+    "theme:dev": "npm run theme:rebuild && npm run build:custom && npm run serve",
+    "theme:preview": "cd theme-src && npm run dev",
+    "clean": "if exist node_modules rmdir /s /q node_modules & if exist theme-src\\node_modules rmdir /s /q theme-src\\node_modules & if exist theme-src\\dist rmdir /s /q theme-src\\dist & if exist themes\\custom\\dist rmdir /s /q themes\\custom\\dist & if exist package-lock.json del /f package-lock.json"
   },
   "dependencies": {
     "@jsonresume/jsonresume-theme-class": "^0.4.2",
