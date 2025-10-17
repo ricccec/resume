@@ -1,4 +1,12 @@
 {
+  "scripts": {
+    "validate": "resumed validate resume.json",
+    "build:html": "resumed render resume.json --theme jsonresume-theme-even -o index.html",
+    "build:pdf": "resumed export resume.json --theme jsonresume-theme-even --output assets/resume.pdf",
+    "build": "npm run validate && npm run build:html && npm run build:pdf",
+    "serve": "serve .",
+    "dev": "npm run build && npm run serve"
+  },
   "dependencies": {
     "@jsonresume/jsonresume-theme-class": "^0.4.2",
     "@jsonresume/jsonresume-theme-professional": "^1.0.18",
@@ -8,5 +16,8 @@
     "puppeteer": "^24.25.0",
     "resumed": "^6.1.0",
     "styled-components": "^6.1.19"
+  },
+  "devDependencies": {
+    "serve": "^14.2.5"
   }
 }
