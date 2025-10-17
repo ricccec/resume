@@ -1,7 +1,7 @@
 import { html } from '@rbardini/html'
 import markdown from '../utils/markdown.js'
 import DateTimeDuration from './date-time-duration.js'
-import Link from './link.js'
+import { formatURL } from './link.js'
 
 /**
  * @param {string[]} roles
@@ -17,50 +17,49 @@ export default function Projects(projects = []) {
   return (
     projects.length > 0 &&
     html`
-      <section id="projects">
+      <section id="projects" class="section-header">
         <h3>Projects</h3>
-        <div class="stack">
+        <hr>
+
+        <div class="section-inner">
+        <div class="timeline">
           ${projects.map(
-            ({
-              description,
-              entity,
-              highlights = [],
-              keywords = [],
-              name,
-              startDate,
-              endDate,
-              roles = [],
-              type,
-              url,
-            }) => html`
-              <article>
+      ({
+        description,
+        entity,
+        highlights = [],
+        keywords = [],
+        name,
+        startDate,
+        endDate,
+        roles = [],
+        type,
+        url,
+      }) => html`
+              <article class="section-item">
                 <header>
-                  <h4>${Link(url, name)}</h4>
-                  <div class="meta">
-                    <div>
-                      ${roles.length > 0 && html`<strong>${formatRoles(roles)}</strong>`}
-                      ${entity && html`at <strong>${entity}</strong>`}
-                    </div>
-                    ${startDate && html`<div>${DateTimeDuration(startDate, endDate)}</div>`}
-                    ${type && html`<div>${type}</div>`}
+                <div class="position-date-wrapper">
+                  <div class="position-title">${name}</div>
                   </div>
+                  ${url && html`<div class="position-location">${formatURL(url)}</div>`}
                 </header>
-                ${description && markdown(description)}
+                ${description && html`<div class="section-content">${markdown(description)}</div>`}
                 ${highlights.length > 0 &&
-                html`
-                  <ul>
+        html`
+                  <ul class="tag-list">
                     ${highlights.map(highlight => html`<li>${markdown(highlight)}</li>`)}
                   </ul>
                 `}
                 ${keywords.length > 0 &&
-                html`
+        html`
                   <ul class="tag-list">
                     ${keywords.map(keyword => html`<li>${keyword}</li>`)}
                   </ul>
                 `}
               </article>
             `,
-          )}
+    )}
+        </div>
         </div>
       </section>
     `

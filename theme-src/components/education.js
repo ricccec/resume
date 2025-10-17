@@ -11,29 +11,28 @@ export default function Education(education = []) {
   return (
     education.length > 0 &&
     html`
-      <section id="education">
+      <section id="education" class="section-header">
         <h3>Education</h3>
-        <div class="stack">
-          ${education.map(
-            ({ area, courses = [], institution, startDate, endDate, studyType, url }) => html`
-              <article>
-                <header>
-                  <h4>${Link(url, institution)}</h4>
-                  <div class="meta">
-                    <div>${[studyType, area && html`<strong>${area}</strong>`].filter(Boolean).join(' in ')}</div>
-                    ${startDate && html`<div>${DateTimeDuration(startDate, endDate)}</div>`}
+        <hr>
+        <div class="section-inner">
+          <div class="timeline">
+            ${education.map(
+      ({ area, institution, startDate, endDate, studyType, score }) => html`
+                <article class="section-item">
+                  <header>
+                  <div class="position-date-wrapper">
+                   <div class="position-title">${[studyType, area && html`${area}`].filter(Boolean).join(' in ')}</div>
+                   ${startDate && html`<div class="date-range">${DateTimeDuration(startDate, endDate)}</div>`}
                   </div>
-                </header>
-                ${courses.length > 0 &&
-                html`
-                  <h5>Courses</h5>
-                  <ul>
-                    ${courses.map(course => html`<li>${markdown(course)}</li>`)}
-                  </ul>
-                `}
-              </article>
-            `,
-          )}
+                  <div>
+                              ${institution && html`<div class="position-location">${institution}</div>`}
+                            </div>
+                  </header>
+                  ${score && html`<div class="section-content"><p>${score}</p></div>`}
+                </article>
+              `,
+    )}
+          </div>
         </div>
       </section>
     `

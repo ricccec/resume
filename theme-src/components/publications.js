@@ -1,7 +1,9 @@
 import { html } from '@rbardini/html'
 import markdown from '../utils/markdown.js'
 import DateTime from './date-time.js'
-import Link from './link.js'
+import { formatURL } from './link.js'
+// @ts-expect-error ellipsize types not properly exported
+import ellipsize from 'ellipsize'
 
 /**
  * @param {import('../schema.d.ts').ResumeSchema['publications']} publications
@@ -11,20 +13,22 @@ export default function Publications(publications = []) {
   return (
     publications.length > 0 &&
     html`
-      <section id="publications">
+      <section id="publications" class="section-header">
         <h3>Publications</h3>
-        <div class="stack">
+        <hr>
+        <div class="section-inner">
           ${publications.map(
             ({ name, publisher, releaseDate, summary, url }) => html`
-              <article>
+              <article class="section-item">
                 <header>
-                  <h4>${Link(url, name)}</h4>
-                  <div class="meta">
-                    ${publisher && html`<div>Published by <strong>${publisher}</strong></div>`}
-                    ${releaseDate && DateTime(releaseDate)}
+                  <div class="position-date-wrapper">
+                    <div class="position-title">${ellipsize(name, 60)}</div>
                   </div>
+                  ${url && html`<div class="position-location">${formatURL(url)}</div>`}
+                  
                 </header>
-                ${summary && markdown(summary)}
+                <div class="section-content"><p>Full title: "<i>${name}</i>"</p></div>
+                 ${publisher && html`<div class="section-content"><p>Published by <strong>${publisher}</strong></p></div>`}
               </article>
             `,
           )}

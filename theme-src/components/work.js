@@ -23,57 +23,38 @@ export default function Work(work = []) {
   return (
     work.length > 0 &&
     html`
-      <section id="work">
+      <section id="work" class="section-header">
         <h3>Work</h3>
-        <div class="stack">
+        <hr>
+        <div class="section-inner">
           ${nestedWork.map(({ description, name, url, items = [] }) => {
             const singleItem = items.length === 1 ? items[0] : undefined
             return html`
-              <article>
-                <header>
-                  <h4>${singleItem ? singleItem.position : Link(url, name)}</h4>
-                  <div class="meta">
-                    ${singleItem
-                      ? html`
-                          <div>
-                            ${[html`<strong>${Link(url, name)}</strong>`, description].filter(Boolean).join(' · ')}
-                          </div>
-                          ${singleItem.startDate &&
-                          html`<div>${DateTimeDuration(singleItem.startDate, singleItem.endDate)}</div>`}
-                          ${singleItem.location && html`<div>${singleItem.location}</div>`}
-                        `
-                      : html`
-                          ${description && html`<div>${description}</div>`}
-                          ${items.some(item => item.startDate) && html`<div>${Duration(items)}</div>`}
-                        `}
-                  </div>
-                </header>
-                <div class="timeline">
                   ${items.map(
                     ({ highlights = [], location, position, startDate, endDate, summary }) => html`
-                      <div>
+                      <article class="section-item">
                         ${!singleItem &&
                         html`
-                          <div>
-                            <h5>${position}</h5>
-                            <div class="meta">
-                              ${startDate && html`<div>${DateTimeDuration(startDate, endDate)}</div>`}
-                              ${location && html`<div>${location}</div>`}
+                          <header>
+                            <div class="position-date-wrapper">
+                              <div class="position-title">${position}</div>
+                              ${startDate && html`<div class="date-range">${DateTimeDuration(startDate, endDate)}</div>`}
                             </div>
-                          </div>
+                            <div>
+                              ${location && html`<div class="position-location">${location}</div>`}
+                            </div>
+                          </header>
                         `}
-                        ${summary && markdown(summary)}
+                        ${summary && html`<div class="section-content">${markdown(summary)}</div>`}
                         ${highlights.length > 0 &&
                         html`
-                          <ul>
-                            ${highlights.map(highlight => html`<li>${markdown(highlight)}</li>`)}
+                          <ul class="tag-list">
+                            ${highlights.map(highlight => html`<li>${markdown(highlight, true)}</li>`)}
                           </ul>
                         `}
-                      </div>
+                      </article>
                     `,
                   )}
-                </div>
-              </article>
             `
           })}
         </div>

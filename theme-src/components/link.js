@@ -4,7 +4,7 @@ import { html } from '@rbardini/html'
  * @param {string} url
  * @returns {string}
  */
-const formatURL = url => url.replace(/^(https?:|)\/\//, '').replace(/\/$/, '')
+export const formatURL = url => url.replace(/^(https?:|)\/\//, '').replace(/\/$/, '')
 
 /**
  * @param {string} [url]

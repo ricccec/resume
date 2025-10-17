@@ -1,7 +1,7 @@
 // @ts-expect-error `?raw` query
 import js from './assets/page.js?raw'
 // @ts-expect-error `?inline` query
-import css from './assets/page.css?inline'
+import css from './assets/custom.css?inline'
 import Resume from './components/resume.js'
 
 export const pdfRenderOptions = {

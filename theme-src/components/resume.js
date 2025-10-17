@@ -13,6 +13,7 @@ import References from './references.js'
 import Skills from './skills.js'
 import Volunteer from './volunteer.js'
 import Work from './work.js'
+import Gdpr from './gdpr.js'
 
 /**
  * @param {import('../schema.d.ts').ResumeSchema} resume
@@ -39,10 +40,14 @@ export default function Resume(resume, { css, js } = {}) {
         </script>`}
       </head>
       <body>
-        ${Header(resume.basics)} ${Work(resume.work)} ${Volunteer(resume.volunteer)} ${Education(resume.education)}
-        ${Projects(resume.projects)} ${Awards(resume.awards)} ${Certificates(resume.certificates)}
-        ${Publications(resume.publications)} ${Skills(resume.skills)} ${Languages(resume.languages)}
-        ${Interests(resume.interests)} ${References(resume.references)}
+        <div class="content-wrapper">
+          ${Header(resume.basics)}
+          ${Work(resume.work)}
+          ${Education(resume.education)}
+          ${Projects(resume.projects)}
+          ${Publications(resume.publications)}
+          ${Gdpr()}
+        </div>
       </body>
     </html>`
 }

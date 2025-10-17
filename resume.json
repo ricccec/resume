@@ -16,7 +16,9 @@
   },
   "work": [
     {
-      "company": "Cyber Dyne s.r.l.",
+      "location": "Cyber Dyne s.r.l.",
+      "startDate": "2013-01-01",
+      "endDate": "2014-01-01",
       "position": "Software Engineer – Team Lead",
       "summary": "Designed and implemented multi-objective evolutionary optimization algorithms for the Kimeme platform; led delivery team.",
       "highlights": [
@@ -27,7 +29,7 @@
       ]
     },
     {
-      "company": "ERSistemi s.r.l.",
+      "location": "ERSistemi s.r.l.",
       "position": "Software Developer",
       "summary": "Developed tools to support SCADA system operations for manufacturing.",
       "highlights": [
@@ -36,7 +38,7 @@
       ]
     },
     {
-      "company": "ENEA Research Center, Frascati (Rome)",
+      "location": "ENEA Research Center, Frascati (Rome)",
       "position": "PhD Researcher",
       "summary": "Conducted research on wireless signal propagation in harsh environments, sensor tech, and digital control systems.",
       "highlights": [
@@ -50,9 +52,13 @@
       ]
     },
     {
-      "company": "Università Politecnica delle Marche",
+      "location": "Università Politecnica delle Marche",
       "position": "Intern",
-      "summary": "Ported JVoiceXML VXML interpreter to Android."
+      "summary": "Ported JVoiceXML VXML interpreter to Android.",
+      "highlights": [
+        "Android",
+        "VXML"
+      ]
     }
   ],
   "education": [
@@ -76,8 +82,8 @@
       ]
     },
     {
-      "name": "tile_based_engine",
-      "description": "A lightweight 2D tile-based game engine, designed for rapid prototyping and educational purposes.",
+      "name": "Custom Tile-based Game Engine",
+      "description": "A lightweight 2D tile-based game engine written in Java, designed for rapid prototyping and educational purposes.",
       "url": "https://github.com/ricccec/tile_based_engine"
     }
   ],

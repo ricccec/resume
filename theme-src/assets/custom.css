@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&display=swap');
+
+html {
+  font-family: Lora, Georgia, serif;
+  background: #fff;
+  font-size: 9px;
+}
+
+h2 {
+  font-size: 1.65rem;
+}
+
+p {
+  padding: 0;
+  margin: 0;
+}
+
+p, li {
+  font-size: 1.4rem;
+  line-height: 1.5rem;
+}
+
+.secondary {
+  color: #111;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.section-header {
+  max-width: 700px;
+  margin: 0 auto 22px;
+  position: relative;
+}
+
+.qr-code {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 80px;
+  height: 80px;
+}
+
+.section-header h3 {
+  margin: 0;
+  padding: 0;
+  margin-bottom: 3px;
+  font-weight: 600;
+  font-size: 1.65rem;
+  text-transform: uppercase;
+}
+
+.section-header hr {
+  margin: 0;
+  padding: 0;
+  margin-top: 7px;
+  margin-bottom: 3px;
+}
+
+.section-inner {
+  margin: 0 8px;
+}
+
+.section-item {
+    margin-bottom: 18px;
+}
+
+.position-date-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.position-title {
+  font-weight: 600;
+  font-size: 1.45rem;
+  margin-bottom: 3px;
+}
+
+.date-range {
+  display: flex;
+  font-style: italic;
+  font-size: 1.4rem;
+}
+
+.position-location {
+  font-style: italic;
+  font-size: 1.4rem;
+  margin-bottom: 8px;
+}
+
+.section-content {
+  margin-bottom: 5px;
+}
+
+.small-text {
+  font-size: 1.2em;
+  line-height: normal;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+
+  list-style: none;
+  padding: 0;
+}
+
+.tag-list > li {
+  padding: 0em;
+  font-style: italic;
+}
+
+.tag-list > li:not(:first-child)::before {
+  content: '|';
+  margin-right: 0.6em;
+  margin-left: 0.6em;
+}
+
+.tag-list > li:first-child {
+  padding-left: 0;
+}
+
+.name-header {
+    
+  font-weight: 600;
+  font-size: 3rem;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.label-header {
+  font-weight: 600;
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.content-wrapper {
+  max-width: 660px;
+  margin: 0 auto;
+  line-height: calc(1ex / 0.32);
+  margin-bottom: 40px;
+}
+
+.icon-list {
+  display: flex;
+  gap: 2px 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 660px;
+  margin: 0 auto;
+  line-height: calc(1ex / 0.32);
+}
+
+.icon-list > div {
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  line-height: calc(1ex / 0.32);
+}
+
+.icon-list > div svg {
+  margin-right: 5px;
+}

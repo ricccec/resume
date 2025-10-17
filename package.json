@@ -12,7 +12,7 @@
     "dev:custom": "npm run build:custom && npm run serve",
     "theme:install": "cd theme-src && npm install",
     "theme:build": "cd theme-src && npm run build",
-    "theme:copy": "if not exist themes\\custom\\dist mkdir themes\\custom\\dist && xcopy /E /I /Y theme-src\\dist\\* themes\\custom\\dist",
+    "theme:copy": "if not exist themes\\custom\\dist mkdir themes\\custom\\dist && if not exist themes\\custom\\bin mkdir themes\\custom\\bin && xcopy /E /I /Y theme-src\\dist\\* themes\\custom\\dist && xcopy /E /I /Y theme-src\\bin\\* themes\\custom\\bin",
     "theme:link": "npm uninstall jsonresume-theme-custom & npm install ./themes/custom --legacy-peer-deps",
     "theme:rebuild": "npm run theme:build && npm run theme:copy && npm run theme:link",
     "theme:dev": "npm run theme:rebuild && npm run build:custom && npm run serve",

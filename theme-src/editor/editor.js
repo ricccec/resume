@@ -3,6 +3,7 @@ import { json } from '@codemirror/lang-json'
 import { oneDark } from '@codemirror/theme-one-dark'
 import { EditorView, keymap } from '@codemirror/view'
 import resume from '../../resume.json' with { type: 'json' }
+// import resume from '@jsonresume/schema/sample.resume.json' with { type: 'json' }
 import { basicSetup } from 'codemirror'
 import debounce from 'debounce'
 
