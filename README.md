@@ -23,7 +23,7 @@ The custom theme was built in `theme-src/`, based on [Rafael Bardini's jsonresum
 
 3. Build resume:
    ```bash
-   npm run build            # Generate index.html and assets/resume.pdf
+   npm run export           # Validate and export HTML, PDF and TeX
    ```
 
 4. Preview:
@@ -36,10 +36,12 @@ The custom theme was built in `theme-src/`, based on [Rafael Bardini's jsonresum
 **Individual commands:**
 ```bash
 npm run validate           # Validate resume.json
-npm run build:html         # Export to index.html (even theme)
-npm run build:pdf          # Export to assets/resume.pdf (custom theme)
+npm run export:html        # Export to index.html (even theme)
+npm run export:pdf         # Export to assets/resume.pdf (custom theme)
+npm run export:tex         # Export to assets/resume.tex (LaTeX)
+npm run export             # Runs validate, export:html, export:pdf, export:tex
 npm run serve              # Serve locally at http://localhost:3000
-npm run dev                # Build and serve (even theme)
+npm run dev                # Export and serve
 npm run clean              # Remove all dependencies and build artifacts
 ```
 
@@ -56,7 +58,7 @@ A custom theme is available in `theme-src/`.
 3. Rebuild:
    ```bash
    npm run theme:build      # Build, copy to themes/custom/dist, and link
-   npm run build            # Generate resume with new theme
+   npm run export           # Generate resume with new theme
    ```
 
 ## Manual Export
@@ -68,7 +70,7 @@ npx resumed render resume.json --theme jsonresume-theme-even -o index.html
 
 **Export to PDF using Resumed:**
 ```bash
-npx resumed export resume.json --theme jsonresume-theme-even --output assets/resume.pdf
+npx resumed export resume.json --theme jsonresume-theme-custom --output assets/resume.pdf
 
 ```
 
@@ -89,5 +91,5 @@ sudo dnf install -y libnspr libnss libXss alsa-lib atk cups libdrm libX11-xcb li
 
 After installing the packages, re-run:
 ```bash
-npm run build
+npm run export
 ```

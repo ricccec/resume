@@ -1,0 +1,134 @@
+\documentclass[a4paper]{article}
+    \usepackage{fullpage}
+    \usepackage{amsmath}
+    \usepackage{amssymb}
+    \usepackage{textcomp}
+    \usepackage[utf8]{inputenc}
+    \usepackage[T1]{fontenc}
+    \textheight=10in
+    \pagestyle{empty}
+    \raggedright
+    \usepackage[left=0.8in,right=0.8in,bottom=0.8in,top=0.8in]{geometry}
+
+    %\renewcommand{\encodingdefault}{cg}
+%\renewcommand{\rmdefault}{lgrcmr}
+
+\def\bull{\vrule height 0.8ex width .7ex depth -.1ex }
+
+% DEFINITIONS FOR RESUME %%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\area} [2] {
+    \vspace*{-9pt}
+    \begin{verse}
+        \textbf{#1}   #2
+    \end{verse}
+}
+
+\newcommand{\lineunder} {
+    \vspace*{-8pt} \\
++    \hspace*{-18pt} \hrulefill \\
++}
+
+\newcommand{\header} [1] {
+    {\hspace*{-18pt}\vspace*{6pt} \textsc{#1}}
+    \vspace*{-6pt} \lineunder
+}
+
+\newcommand{\employer} [3] {
+    { \textbf{#1} (#2)\\ \underline{\textbf{\emph{#3}}}\\  }
+}
+
+\newcommand{\contact} [3] {
+    \vspace*{-10pt}
+    \begin{center}
+        {\Huge \scshape {#1}}\\
+        #2 \\ #3
+    \end{center}
+    \vspace*{-8pt}
+}
+
+\begin{document}
+\vspace*{-40pt}
+
+%==== Profile ====%
+\vspace*{-10pt}
+\begin{center}
+    {\Huge \scshape Riccardo Cecchi}\\
+    Via delle Palme, 1 $\cdot$ riccardo.cecchi2@gmail.com $\cdot$ (+39) 329-0693335 \\
+\end{center}
+\vspace*{-8pt}
+
+
+%==== Education ====%
+\header{Education}
+\textbf{Università degli Studi dell’Aquila}\\
+MSc Software Engineering and Automation\\
+Top honors (laude)\\
+\vspace{2mm}
+
+%==== Experience ====%
+\header{Experience}
+\vspace{1mm}
+\hfill Start\&Go s.r.l.\\
+\textit{Software Engineer — AI Team}\\
+\vspace{-1mm}
+\begin{itemize} \itemsep 1pt
+\t\item Assistant-UI
+\t\item shadcn
+\t\item Chatbots
+\end{itemize}
+\hfill Freelance\\
+\textit{Freelance Developer}\\
+\vspace{-1mm}
+\begin{itemize} \itemsep 1pt
+\t\item Node.js
+\t\item Next.js
+\t\item NestJS
+\t\item TypeScript
+\t\item React
+\t\item Docker
+\end{itemize}
+\hfill Cyber Dyne s.r.l.\\
+\textit{Software Engineer – Team Lead}\\
+\vspace{-1mm}
+\begin{itemize} \itemsep 1pt
+\t\item Java
+\t\item MongoDB
+\t\item RabbitMQ
+\t\item Git
+\end{itemize}
+\hfill ERSistemi s.r.l.\\
+\textit{Software Developer}\\
+\vspace{-1mm}
+\begin{itemize} \itemsep 1pt
+\t\item VBA
+\t\item MySQL
+\end{itemize}
+\hfill ENEA Research Center, Frascati (Rome)\\
+\textit{PhD Researcher}\\
+\vspace{-1mm}
+\begin{itemize} \itemsep 1pt
+\t\item Python
+\t\item HDL
+\t\item FPGA
+\t\item LabView
+\t\item Matlab
+\t\item Simulink
+\t\item FEKO
+\end{itemize}
+\hfill Università Politecnica delle Marche\\
+\textit{Intern}\\
+\vspace{-1mm}
+\begin{itemize} \itemsep 1pt
+\t\item Android
+\t\item VXML
+\end{itemize}
+\header{Projects}
+{\textbf{Crystal Studio}} {\sl Electron, Vite, React, TypeScript} \hfill https://github.com/ricccec/crystal-studio\\
+A GBStudio-style IDE built on top of the pret/pokecrystal disassembly to edit game content and manage the full Game Boy ROM workflow.\\
+\vspace*{2mm}
+\header{Publications}\n\textbf{Application of Wireless Technologies in a Nuclear Plant: Evaluation of Electromagnetic Propagation With Different Computational Techniques} \hfill Journal of Nuclear Engineering and Radiation Science\\
+https://bit.ly/4n9w2qX\\
+\vspace*{2mm}
+
+\end{document}

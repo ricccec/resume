@@ -1,11 +1,12 @@
 {
   "scripts": {
     "validate": "resumed validate resume.json",
-    "build:html": "resumed render resume.json --theme jsonresume-theme-even -o index.html",
-    "build:pdf": "mkdir -p assets && resumed export resume.json --theme jsonresume-theme-custom --output assets/resume.pdf",
-    "build": "npm run validate && npm run build:html && npm run build:pdf",
+    "export:html": "resumed render resume.json --theme jsonresume-theme-even -o index.html",
+    "export:pdf": "mkdir -p assets && resumed export resume.json --theme jsonresume-theme-custom --output assets/resume.pdf",
+    "export:tex": "node scripts/json2latex.js resume.json assets/resume.tex",
+    "export": "npm run validate && npm run export:html && npm run export:pdf && npm run export:tex",
     "serve": "serve .",
-    "dev": "npm run build && npm run serve",
+    "dev": "npm run export && npm run serve",
     "theme:install": "cd theme-src && npm install",
     "theme:build": "cd theme-src && npm run build && cd .. && npm run theme:link",
     "theme:link": "npm uninstall jsonresume-theme-custom --legacy-peer-deps && npm install ./theme-src --legacy-peer-deps",
