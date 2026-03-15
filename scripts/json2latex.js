@@ -210,11 +210,19 @@ if (Array.isArray(resume.work)) {
     const dates = start && end ? `${start} -- ${end}` : (start || end || '');
     const title = esc(w.position || '');
     const employer = esc(w.location || '');
-    const highlights = (Array.isArray(w.highlights) && w.highlights.length > 0) ? w.highlights : (w.summary ? [w.summary] : []);
+    
     let txt = '    \\resumeSubheading\n      {' + title + '}{' + dates + '}\n      {' + employer + '}{}';
-    if (highlights.length > 0) {
-      const items = highlights.map(h => '        \\resumeItem{' + esc(h) + '}').join('\n');
-      txt += '\n      \\resumeItemListStart\n' + items + '\n      \\resumeItemListEnd';
+    
+    const itemLines = [];
+    if (w.summary) {
+      itemLines.push('        \\resumeItem{' + esc(w.summary) + '}');
+    }
+    if (Array.isArray(w.highlights) && w.highlights.length > 0) {
+      itemLines.push('        \\resumeItem{\\emph{' + w.highlights.map(k => esc(k)).join(' $\\cdot$ ') + '}}');
+    }
+    
+    if (itemLines.length > 0) {
+      txt += '\n      \\resumeItemListStart\n' + itemLines.join('\n') + '\n      \\resumeItemListEnd';
     }
     parts.push(txt);
   }
