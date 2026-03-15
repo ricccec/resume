@@ -25,3 +25,10 @@ coverage/
 theme-src/dist/
 theme-src/node_modules/
 themes/custom/dist/
+# LaTeX build files
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
