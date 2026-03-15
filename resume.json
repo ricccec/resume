@@ -16,6 +16,32 @@
   },
   "work": [
     {
+      "location": "Start&Go s.r.l.",
+      "position": "Software Engineer — AI Team",
+      "startDate": "2026-03",
+      "summary": "Software engineer in the AI team focusing on Assistant-UI, shadcn, and UI/UX for chatbots.",
+      "highlights": [
+        "Assistant-UI",
+        "shadcn",
+        "Chatbots"
+      ]
+    },
+    {
+      "location": "Freelance",
+      "position": "Freelance Developer",
+      "startDate": "2020-01",
+      "endDate": "2025-12",
+      "summary": "Full-stack freelance developer working with Node, TypeScript and React on client projects.",
+      "highlights": [
+        "Node.js",
+        "Next.js",
+        "NestJS",
+        "TypeScript",
+        "React",
+        "Docker"
+      ]
+    },
+    {
       "location": "Cyber Dyne s.r.l.",
       "position": "Software Engineer – Team Lead",
       "summary": "Designed and implemented multi-objective evolutionary optimization algorithms for the Kimeme platform; led delivery team.",

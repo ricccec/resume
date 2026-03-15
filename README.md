@@ -71,3 +71,23 @@ npx resumed render resume.json --theme jsonresume-theme-even -o index.html
 npx resumed export resume.json --theme jsonresume-theme-even --output assets/resume.pdf
 
 ```
+
+## PDF export troubleshooting
+
+The PDF export uses Puppeteer's bundled Chromium. On some Linux systems Chromium requires additional system libraries; if you see errors like "libnspr4.so: cannot open shared object file", install the OS packages below and retry the build.
+
+Debian / Ubuntu:
+```bash
+sudo apt-get update
+sudo apt-get install -y libnspr4 libnss3 libxss1 libasound2 libatk1.0-0 libcups2 libdrm2 libx11-xcb1 libxcomposite1 libxdamage1 libxrandr2 libgbm1 libpango-1.0-0 fonts-liberation
+```
+
+Fedora / CentOS:
+```bash
+sudo dnf install -y libnspr libnss libXss alsa-lib atk cups libdrm libX11-xcb libXcomposite libXdamage libXrandr mesa-libgbm pango liberation-fonts
+```
+
+After installing the packages, re-run:
+```bash
+npm run build
+```
