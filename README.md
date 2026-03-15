@@ -39,7 +39,8 @@ npm run validate           # Validate resume.json
 npm run export:html        # Export to index.html (even theme)
 npm run export:pdf         # Export to assets/resume.pdf (custom theme)
 npm run export:tex         # Export to assets/resume.tex (LaTeX)
-npm run export             # Runs validate, export:html, export:pdf, export:tex
+npm run build:latex        # Compile the LaTeX document into assets/tex/resume.pdf
+npm run export             # Runs validate, export:html, export:pdf, export:tex, build:latex
 npm run serve              # Serve locally at http://localhost:3000
 npm run dev                # Export and serve
 npm run clean              # Remove all dependencies and build artifacts
@@ -71,7 +72,17 @@ npx resumed render resume.json --theme jsonresume-theme-even -o index.html
 **Export to PDF using Resumed:**
 ```bash
 npx resumed export resume.json --theme jsonresume-theme-custom --output assets/resume.pdf
+```
 
+**Export to LaTeX:**
+A custom script (`scripts/json2latex.js`) is also available to convert the JSON resume directly into a strictly formatted LaTeX document (`assets/resume.tex`). It parses the JSON data, handles character escaping, and builds native LaTeX blocks.
+
+```bash
+# Provide input JSON and output TEX paths
+npm run export:tex
+
+# Compile the final PDF using latexmk
+npm run build:latex
 ```
 
 ## PDF export troubleshooting
