@@ -29,118 +29,261 @@ function esc(s) {
     .replace(/\^/g, '\\textasciicircum{}');
 }
 
+function year(d) {
+  if (!d) return '';
+  if (d.length >= 4) return d.slice(0,4);
+  return d;
+}
+
 const resume = readJSON(inputPath);
 const b = resume.basics || {};
 
-let out = `\\documentclass[a4paper]{article}
-    \\usepackage{fullpage}
-    \\usepackage{amsmath}
-    \\usepackage{amssymb}
-    \\usepackage{textcomp}
-    \\usepackage[utf8]{inputenc}
-    \\usepackage[T1]{fontenc}
-    \\textheight=10in
-    \\pagestyle{empty}
-    \\raggedright
-    \\usepackage[left=0.8in,right=0.8in,bottom=0.8in,top=0.8in]{geometry}
+const tpl = `%-------------------------
+% Resume in Latex
+% Author : __NAME__
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+%------------------------
 
-    %\\renewcommand{\\encodingdefault}{cg}
-%\\renewcommand{\\rmdefault}{lgrcmr}
+\\documentclass[letterpaper,11pt]{article}
 
-\\def\\bull{\\vrule height 0.8ex width .7ex depth -.1ex }
+\\usepackage{latexsym}
+\\usepackage[empty]{fullpage}
+\\usepackage{titlesec}
+\\usepackage{marvosym}
+\\usepackage[usenames,dvipsnames]{color}
+\\usepackage{verbatim}
+\\usepackage{enumitem}
+\\usepackage[hidelinks]{hyperref}
+\\usepackage{fancyhdr}
+\\usepackage[english]{babel}
+\\usepackage{tabularx}
+\\input{glyphtounicode}
 
-% DEFINITIONS FOR RESUME %%%%%%%%%%%%%%%%%%%%%%%
+%----------FONT OPTIONS----------
+% sans-serif
+% \\usepackage[sfdefault]{FiraSans}
+% \\usepackage[sfdefault]{roboto}
+% \\usepackage[sfdefault]{noto-sans}
+% \\usepackage[default]{sourcesanspro}
 
-\\newcommand{\\area} [2] {
-    \\vspace*{-9pt}
-    \\begin{verse}
-        \\textbf{#1}   #2
-    \\end{verse}
+% serif
+% \\usepackage{CormorantGaramond}
+% \\usepackage{charter}
+
+\\pagestyle{fancy}
+\\fancyhf{} % clear all header and footer fields
+\\fancyfoot{}
+\\renewcommand{\\headrulewidth}{0pt}
+\\renewcommand{\\footrulewidth}{0pt}
+
+% Adjust margins
+\\addtolength{\\oddsidemargin}{-0.5in}
+\\addtolength{\\evensidemargin}{-0.5in}
+\\addtolength{\\textwidth}{1in}
+\\addtolength{\\topmargin}{-.5in}
+\\addtolength{\\textheight}{1.0in}
+
+\\urlstyle{same}
+
+\\raggedbottom
+\\raggedright
+\\setlength{\\tabcolsep}{0in}
+
+% Sections formatting
+\\titleformat{\\section}{
+  \\vspace{-4pt}\\scshape\\raggedright\\large
+}{}{0em}{}[\\color{black}\\titlerule \\vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\\newcommand{\\resumeItem}[1]{
+  \\item\\small{
+    {#1 \\vspace{-2pt}}
+  }
 }
 
-\\newcommand{\\lineunder} {
-    \\vspace*{-8pt} \\\\\n+    \\hspace*{-18pt} \\hrulefill \\\\\n+}
-
-\\newcommand{\\header} [1] {
-    {\\hspace*{-18pt}\\vspace*{6pt} \\textsc{#1}}
-    \\vspace*{-6pt} \\lineunder
+\\newcommand{\\resumeSubheading}[4]{
+  \\vspace{-2pt}\\item
+    \\begin{tabular*}{0.97\\textwidth}[t]{l@{\\extracolsep{\\fill}}r}
+      \\textbf{#1} & #2 \\\\
+      \\textit{\\small#3} & \\textit{\\small #4} \\\\
+    \\end{tabular*}\\vspace{-7pt}
 }
 
-\\newcommand{\\employer} [3] {
-    { \\textbf{#1} (#2)\\\\ \\underline{\\textbf{\\emph{#3}}}\\\\  }
+\\newcommand{\\resumeSubSubheading}[2]{
+    \\item
+    \\begin{tabular*}{0.97\\textwidth}{l@{\\extracolsep{\\fill}}r}
+      \\textit{\\small#1} & \\textit{\\small #2} \\\\
+    \\end{tabular*}\\vspace{-7pt}
 }
 
-\\newcommand{\\contact} [3] {
-    \\vspace*{-10pt}
-    \\begin{center}
-        {\\Huge \\scshape {#1}}\\\\
-        #2 \\\\ #3
-    \\end{center}
-    \\vspace*{-8pt}
+\\newcommand{\\resumeProjectHeading}[2]{
+    \\item
+    \\begin{tabular*}{0.97\\textwidth}{l@{\\extracolsep{\\fill}}r}
+      \\small#1 & #2 \\\\
+    \\end{tabular*}\\vspace{-7pt}
 }
+
+\\newcommand{\\resumeSubItem}[1]{\\resumeItem{#1}\\vspace{-4pt}}
+
+\\renewcommand\\labelitemii{$\\vcenter{\\hbox{\\tiny$\\bullet$}}$}
+
+\\newcommand{\\resumeSubHeadingListStart}{\\begin{itemize}[leftmargin=0.15in, label={}]}
+\\newcommand{\\resumeSubHeadingListEnd}{\\end{itemize}}
+\\newcommand{\\resumeItemListStart}{\\begin{itemize}}
+\\newcommand{\\resumeItemListEnd}{\\end{itemize}\\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \\begin{document}
-\\vspace*{-40pt}
 
-%==== Profile ====%
-\\vspace*{-10pt}
+%----------HEADING----------
 \\begin{center}
-    {\\Huge \\scshape ${esc(b.name || '')}}\\\\
-    ${esc((b.location && b.location.address) || '')} $\\cdot$ ${esc(b.email || '')} $\\cdot$ ${esc(b.phone || '')}\\\\
+    \\textbf{\\Huge __NAME__} \\\\ \\vspace{8pt}
+    __ROLE__ \\\\ \\vspace{2pt}
+    \\mbox{\\scriptsize$\\Diamond$ \\small __CITY__}
+    \\mbox{\\scriptsize$\\Diamond$ \\small __EMAIL__}
+    \\mbox{\\scriptsize$\\Diamond$ \\small __PHONE__}
+    \\mbox{\\scriptsize$\\Diamond$ \\small __URL__}
 \\end{center}
-\\vspace*{-8pt}
-\n`;
 
-// Education
-out += `\n%==== Education ====%\n\\header{Education}\n`;
-if (Array.isArray(resume.education) && resume.education.length > 0) {
-  const edu = resume.education[0];
-  out += `\\textbf{${esc(edu.institution || '')}}\\\\\n${esc((edu.studyType ? edu.studyType + ' ' : '') + (edu.area || ''))}\\\\\n`;
-  if (edu.score) out += `${esc(edu.score)}\\\\\n`;
-  out += `\\vspace{2mm}\n`;
-} else {
-  out += `\\textbf{${esc(b.location && b.location.city ? b.location.city : '')}}\\\\\n`;
+\\section{Summary}
+  \\resumeSubHeadingListStart
+    \\item{__SUMMARY__}
+  \\resumeSubHeadingListEnd
+
+\\section{Experience}
+  \\resumeSubHeadingListStart
+__EXPERIENCE__
+  \\resumeSubHeadingListEnd
+
+\\section{Education}
+  \\resumeSubHeadingListStart
+__EDUCATION__
+  \\resumeSubHeadingListEnd
+
+\\section{Projects}
+  \\resumeSubHeadingListStart
+__PROJECTS__
+  \\resumeSubHeadingListEnd
+
+\\section{Publications}
+  \\resumeSubHeadingListStart
+__PUBLICATIONS__
+  \\resumeSubHeadingListEnd
+
+\\section{Technical Skills}
+ \\begin{itemize}[leftmargin=0.15in, label={}]
+    \\small{\\item{
+     __SKILLS__
+    }}
+ \\end{itemize}
+
+\\section{GDPR}
+  \\resumeSubHeadingListStart
+    \\item{\\emph{Autorizzo il trattamento dei miei dati personali ai sensi dell'art. 13 Dlgs 196 del 30 giugno 2003 e dell'art. 13 GDPR (Regolamento UE 2016/679) ai fini della ricerca e selezione del personale.}}
+    \\item{\\today \\hfill __NAME__}
+  \\resumeSubHeadingListEnd
+
+\\end{document}
+`;
+
+function joinItems(arr, wrapperStart, wrapperEnd, itemCb) {
+  if (!Array.isArray(arr) || arr.length === 0) return '';
+  const parts = [];
+  for (const it of arr) parts.push(itemCb(it));
+  return wrapperStart + '\n' + parts.join('\n') + '\n' + wrapperEnd;
 }
 
-// Experience
-out += `\n%==== Experience ====%\n\\header{Experience}\n\\vspace{1mm}\n`;
+// Build EXPERIENCE
+let exp = '';
 if (Array.isArray(resume.work)) {
+  const parts = [];
   for (const w of resume.work) {
-    out += `\\hfill ${esc(w.location || '')}\\\\\n\\textit{${esc(w.position || '')}}\\\\\n\\vspace{-1mm}\n\\begin{itemize} \\itemsep 1pt\n`;
-    if (Array.isArray(w.highlights)) {
-      for (const h of w.highlights) out += `\\t\\item ${esc(h)}\n`;
-    } else if (w.summary) {
-      out += `\\t\\item ${esc(w.summary)}\n`;
-    }
-    out += `\\end{itemize}\n`;
+    const start = year(w.startDate || '');
+    const end = year(w.endDate || '');
+    const dates = start && end ? `${start} -- ${end}` : (start || end || '');
+    const title = esc(w.position || '');
+    const employer = esc(w.location || '');
+    const items = (Array.isArray(w.highlights) ? w.highlights : (w.summary ? [w.summary] : [])).map(h => '        \\resumeItem{' + esc(h) + '}').join('\n');
+    parts.push('    \\resumeSubheading\n      {' + title + '}{' + dates + '}\n      {' + employer + '}{}\n      \\resumeItemListStart\n' + items + '\n      \\resumeItemListEnd');
   }
+  exp = parts.join('\n\n');
+}
+
+// Education
+let edu = '';
+if (Array.isArray(resume.education)) {
+  const parts = [];
+  for (const e of resume.education) {
+    const dates = esc((e.startDate || '') + (e.endDate ? ' -- ' + e.endDate : ''));
+    parts.push('    \\resumeSubheading\n      {' + esc(e.studyType || '') + ' in ' + esc(e.area || '') + '}{' + dates + '}\n      {' + esc(e.institution || '') + '}{}\n      \\resumeItemListStart\n        \\resumeItem{' + esc(e.score || '') + '}\n      \\resumeItemListEnd');
+  }
+  edu = parts.join('\n\n');
 }
 
 // Projects
-if (Array.isArray(resume.projects) && resume.projects.length) {
-  out += `\\header{Projects}\n`;
+let proj = '';
+if (Array.isArray(resume.projects)) {
+  const parts = [];
   for (const p of resume.projects) {
-    out += `{\\textbf{${esc(p.name || '')}}} {\\sl ${esc((p.keywords || []).join(', '))}} \\hfill ${esc(p.url || '')}\\\\\n${esc(p.description || '')}\\\\\n\\vspace*{2mm}\n`;
+    parts.push('    \\resumeProjectHeading\n        {\\textbf{' + esc(p.name || '') + '} $|$ \\emph{' + ((p.keywords || []).map(k => esc(k)).join(' $\\cdot$ ')) + '}}{' + esc(p.url || '') + '}\n        \\resumeItemListStart\n          \\resumeItem{' + esc(p.description || '') + '}\n        \\resumeItemListEnd');
   }
+  proj = parts.join('\n\n');
 }
 
 // Publications
-if (Array.isArray(resume.publications) && resume.publications.length) {
-  out += `\\header{Publications}\\n`;
-  for (const pub of resume.publications) {
-    out += `\\textbf{${esc(pub.name || '')}} \\hfill ${esc(pub.publisher || '')}\\\\\n${esc(pub.url || '')}\\\\\n\\vspace*{2mm}\n`;
+let pubs = '';
+if (Array.isArray(resume.publications)) {
+  const parts = [];
+  for (const p of resume.publications) {
+    parts.push('    \\resumeSubheading\n      {' + esc(p.name || '') + '}{}\n      {' + esc(p.publisher || '') + '}{}\n      \\resumeItemListStart\n        \\resumeItem{Available at \\emph{' + esc(p.url || '') + '}}\n      \\resumeItemListEnd');
+  }
+  pubs = parts.join('\n\n');
+}
+
+// Skills
+const allSkills = (resume.skills || []).map(s => s.name || '');
+let skillsCompiled = `\\textbf{Languages}{: ${esc(allSkills.join(', '))} }`;
+if (allSkills.length === 0) {
+  skillsCompiled = `\\textbf{Languages}{: Java, TypeScript, Python, C/C++, SQL, PHP, VHDL } \\\\
+     \\textbf{Frameworks}{: Electron.js, Node.js, React} \\\\
+     \\textbf{Developer Tools}{: Git, VS Code, Eclipse}`;
+}
+
+// Location
+let city = '';
+if (b.location && b.location.city) {
+  city = b.location.city;
+  if (b.location.countryCode) {
+    city += ', ' + b.location.countryCode;
   }
 }
 
-out += `\n\\end{document}\n`;
+const final = tpl
+  .replace(/__NAME__/g, esc(b.name || ''))
+  .replace('__ROLE__', esc(b.label || ''))
+  .replace('__CITY__', esc(city || ''))
+  .replace('__EMAIL__', esc(b.email || ''))
+  .replace('__PHONE__', esc(b.phone || ''))
+  .replace('__URL__', esc(b.url ? b.url.replace(/^https?:\/\//, '') : ''))
+  .replace('__SUMMARY__', esc((resume.summary) || (resume.basics && resume.basics.summary) || ''))
+  .replace('__EXPERIENCE__', exp)
+  .replace('__EDUCATION__', edu)
+  .replace('__PROJECTS__', proj)
+  .replace('__PUBLICATIONS__', pubs)
+  .replace('__SKILLS__', skillsCompiled);
 
-// ensure output directory exists
 try {
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });
+  fs.writeFileSync(outputPath, final, 'utf8');
+  console.log('Wrote', outputPath);
 } catch (e) {
-  console.error('Failed to create output directory', e.message);
+  console.error('Failed to write', outputPath, e.message);
   process.exit(3);
 }
-
-fs.writeFileSync(outputPath, out, 'utf8');
-console.log('Wrote', outputPath);
