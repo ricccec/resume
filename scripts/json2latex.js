@@ -210,8 +210,13 @@ if (Array.isArray(resume.work)) {
     const dates = start && end ? `${start} -- ${end}` : (start || end || '');
     const title = esc(w.position || '');
     const employer = esc(w.location || '');
-    const items = (Array.isArray(w.highlights) ? w.highlights : (w.summary ? [w.summary] : [])).map(h => '        \\resumeItem{' + esc(h) + '}').join('\n');
-    parts.push('    \\resumeSubheading\n      {' + title + '}{' + dates + '}\n      {' + employer + '}{}\n      \\resumeItemListStart\n' + items + '\n      \\resumeItemListEnd');
+    const highlights = (Array.isArray(w.highlights) && w.highlights.length > 0) ? w.highlights : (w.summary ? [w.summary] : []);
+    let txt = '    \\resumeSubheading\n      {' + title + '}{' + dates + '}\n      {' + employer + '}{}';
+    if (highlights.length > 0) {
+      const items = highlights.map(h => '        \\resumeItem{' + esc(h) + '}').join('\n');
+      txt += '\n      \\resumeItemListStart\n' + items + '\n      \\resumeItemListEnd';
+    }
+    parts.push(txt);
   }
   exp = parts.join('\n\n');
 }
@@ -222,7 +227,11 @@ if (Array.isArray(resume.education)) {
   const parts = [];
   for (const e of resume.education) {
     const dates = esc((e.startDate || '') + (e.endDate ? ' -- ' + e.endDate : ''));
-    parts.push('    \\resumeSubheading\n      {' + esc(e.studyType || '') + ' in ' + esc(e.area || '') + '}{' + dates + '}\n      {' + esc(e.institution || '') + '}{}\n      \\resumeItemListStart\n        \\resumeItem{' + esc(e.score || '') + '}\n      \\resumeItemListEnd');
+    let txt = '    \\resumeSubheading\n      {' + esc(e.studyType || '') + ' in ' + esc(e.area || '') + '}{' + dates + '}\n      {' + esc(e.institution || '') + '}{}';
+    if (e.score) {
+      txt += '\n      \\resumeItemListStart\n        \\resumeItem{' + esc(e.score || '') + '}\n      \\resumeItemListEnd';
+    }
+    parts.push(txt);
   }
   edu = parts.join('\n\n');
 }
@@ -232,7 +241,11 @@ let proj = '';
 if (Array.isArray(resume.projects)) {
   const parts = [];
   for (const p of resume.projects) {
-    parts.push('    \\resumeProjectHeading\n        {\\textbf{' + esc(p.name || '') + '} $|$ \\emph{' + ((p.keywords || []).map(k => esc(k)).join(' $\\cdot$ ')) + '}}{' + esc(p.url || '') + '}\n        \\resumeItemListStart\n          \\resumeItem{' + esc(p.description || '') + '}\n        \\resumeItemListEnd');
+    let txt = '    \\resumeProjectHeading\n        {\\textbf{' + esc(p.name || '') + '} $|$ \\emph{' + ((p.keywords || []).map(k => esc(k)).join(' $\\cdot$ ')) + '}}{' + esc(p.url || '') + '}';
+    if (p.description) {
+      txt += '\n        \\resumeItemListStart\n          \\resumeItem{' + esc(p.description) + '}\n        \\resumeItemListEnd';
+    }
+    parts.push(txt);
   }
   proj = parts.join('\n\n');
 }
@@ -242,7 +255,11 @@ let pubs = '';
 if (Array.isArray(resume.publications)) {
   const parts = [];
   for (const p of resume.publications) {
-    parts.push('    \\resumeSubheading\n      {' + esc(p.name || '') + '}{}\n      {' + esc(p.publisher || '') + '}{}\n      \\resumeItemListStart\n        \\resumeItem{Available at \\emph{' + esc(p.url || '') + '}}\n      \\resumeItemListEnd');
+    let txt = '    \\resumeSubheading\n      {' + esc(p.name || '') + '}{}\n      {' + esc(p.publisher || '') + '}{}';
+    if (p.url) {
+      txt += '\n      \\resumeItemListStart\n        \\resumeItem{Available at \\emph{' + esc(p.url) + '}}\n      \\resumeItemListEnd';
+    }
+    parts.push(txt);
   }
   pubs = parts.join('\n\n');
 }
