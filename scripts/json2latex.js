@@ -128,6 +128,14 @@ const tpl = `%-------------------------
     \\end{tabular*}\\vspace{-7pt}
 }
 
+\\newcommand{\\resumePublicationHeading}[2]{
+  \\vspace{-2pt}\\item
+    \\begin{tabular*}{0.97\\textwidth}{p{0.97\\textwidth}}
+      \\textbf{#1} \\\\
+      \\textit{\\small#2} \\\\
+    \\end{tabular*}\\vspace{-7pt}
+}
+
 \\newcommand{\\resumeSubItem}[1]{\\resumeItem{#1}\\vspace{-4pt}}
 
 \\renewcommand\\labelitemii{$\\vcenter{\\hbox{\\tiny$\\bullet$}}$}
@@ -229,7 +237,7 @@ let proj = '';
 if (Array.isArray(resume.projects)) {
   const parts = [];
   for (const p of resume.projects) {
-    let txt = '    \\resumeProjectHeading\n        {\\textbf{' + esc(p.name || '') + '} $|$ \\emph{' + ((p.keywords || []).map(k => esc(k)).join(' $\\cdot$ ')) + '}}{' + esc(p.url || '') + '}';
+    let txt = '    \\resumeProjectHeading\n        {\\textbf{' + esc(p.name || '') + '} $|$ \\emph{' + ((p.keywords || []).map(k => esc(k)).join(' $\\cdot$ ')) + '}}{}';
     if (p.description) {
       txt += '\n        \\resumeItemListStart\n          \\resumeItem{' + esc(p.description) + '}\n        \\resumeItemListEnd';
     }
@@ -243,7 +251,7 @@ let pubs = '';
 if (Array.isArray(resume.publications)) {
   const parts = [];
   for (const p of resume.publications) {
-    let txt = '    \\resumeSubheading\n      {' + esc(p.name || '') + '}{}\n      {' + esc(p.publisher || '') + '}{}';
+    let txt = '    \\resumePublicationHeading\n      {' + esc(p.name || '') + '}\n      {' + esc(p.publisher || '') + '}';
     if (p.url) {
       txt += '\n      \\resumeItemListStart\n        \\resumeItem{Available at \\emph{' + esc(p.url) + '}}\n      \\resumeItemListEnd';
     }
