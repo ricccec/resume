@@ -152,37 +152,17 @@ const tpl = `%-------------------------
     \\mbox{\\scriptsize$\\Diamond$ \\small __URL__}
 \\end{center}
 
-\\section{Summary}
-  \\resumeSubHeadingListStart
-    \\item{__SUMMARY__}
-  \\resumeSubHeadingListEnd
+__SUMMARY_SECTION__
 
-\\section{Experience}
-  \\resumeSubHeadingListStart
-__EXPERIENCE__
-  \\resumeSubHeadingListEnd
+__EXPERIENCE_SECTION__
 
-\\section{Education}
-  \\resumeSubHeadingListStart
-__EDUCATION__
-  \\resumeSubHeadingListEnd
+__EDUCATION_SECTION__
 
-\\section{Projects}
-  \\resumeSubHeadingListStart
-__PROJECTS__
-  \\resumeSubHeadingListEnd
+__PROJECTS_SECTION__
 
-\\section{Publications}
-  \\resumeSubHeadingListStart
-__PUBLICATIONS__
-  \\resumeSubHeadingListEnd
+__PUBLICATIONS_SECTION__
 
-\\section{Technical Skills}
- \\begin{itemize}[leftmargin=0.15in, label={}]
-    \\small{\\item{
-     __SKILLS__
-    }}
- \\end{itemize}
+__SKILLS_SECTION__
 
 \\section{GDPR}
   \\resumeSubHeadingListStart
@@ -277,14 +257,9 @@ let skillsCompiled = '';
 if (Array.isArray(resume.skills) && resume.skills.length > 0) {
   skillsCompiled = resume.skills.map(s => {
     let name = s.name || '';
-    if (name === 'Tools') name = 'Developer Tools';
-    let keywords = (s.keywords || []).map(k => k === 'Electron' ? 'Electron.js' : k).join(', ');
+    let keywords = (s.keywords || []).join(', ');
     return `\\textbf{${esc(name)}}: ${esc(keywords)}`;
   }).join(' \\\\\n     ');
-} else {
-  skillsCompiled = `\\textbf{Languages}: Java, TypeScript, Python, C/C++, SQL, PHP, VHDL \\\\
-     \\textbf{Frameworks}: Electron.js, Node.js, React \\\\
-     \\textbf{Developer Tools}: Git, VS Code, Eclipse`;
 }
 
 // Location
@@ -296,6 +271,15 @@ if (b.location && b.location.city) {
   }
 }
 
+const summaryBody = esc((resume.summary) || (resume.basics && resume.basics.summary) || '');
+const summarySection = summaryBody ? `\\section{Summary}\n  \\resumeSubHeadingListStart\n    \\item{${summaryBody}}\n  \\resumeSubHeadingListEnd` : '';
+
+const expSection = exp ? `\\section{Experience}\n  \\resumeSubHeadingListStart\n${exp}\n  \\resumeSubHeadingListEnd` : '';
+const eduSection = edu ? `\\section{Education}\n  \\resumeSubHeadingListStart\n${edu}\n  \\resumeSubHeadingListEnd` : '';
+const projSection = proj ? `\\section{Projects}\n  \\resumeSubHeadingListStart\n${proj}\n  \\resumeSubHeadingListEnd` : '';
+const pubsSection = pubs ? `\\section{Publications}\n  \\resumeSubHeadingListStart\n${pubs}\n  \\resumeSubHeadingListEnd` : '';
+const skillsSection = skillsCompiled ? `\\section{Technical Skills}\n \\begin{itemize}[leftmargin=0.15in, label={}]\n    \\small{\\item{\n     ${skillsCompiled}\n    }}\n \\end{itemize}` : '';
+
 const final = tpl
   .replace(/__NAME__/g, esc(b.name || ''))
   .replace('__ROLE__', esc(b.label || ''))
@@ -303,12 +287,12 @@ const final = tpl
   .replace('__EMAIL__', esc(b.email || ''))
   .replace('__PHONE__', esc(b.phone || ''))
   .replace('__URL__', esc(b.url ? b.url.replace(/^https?:\/\//, '') : ''))
-  .replace('__SUMMARY__', esc((resume.summary) || (resume.basics && resume.basics.summary) || ''))
-  .replace('__EXPERIENCE__', exp)
-  .replace('__EDUCATION__', edu)
-  .replace('__PROJECTS__', proj)
-  .replace('__PUBLICATIONS__', pubs)
-  .replace('__SKILLS__', skillsCompiled);
+  .replace('__SUMMARY_SECTION__', summarySection)
+  .replace('__EXPERIENCE_SECTION__', expSection)
+  .replace('__EDUCATION_SECTION__', eduSection)
+  .replace('__PROJECTS_SECTION__', projSection)
+  .replace('__PUBLICATIONS_SECTION__', pubsSection)
+  .replace('__SKILLS_SECTION__', skillsSection);
 
 try {
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });
