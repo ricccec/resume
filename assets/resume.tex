@@ -68,7 +68,7 @@
 
 \newcommand{\resumeSubheading}[4]{
   \vspace{-2pt}\item
-    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    \begin{tabular*}{0.97\textwidth}[t]{p{0.75\textwidth}@{\extracolsep{\fill}}r}
       \textbf{#1} & #2 \\
       \textit{\small#3} & \textit{\small #4} \\
     \end{tabular*}\vspace{-7pt}
@@ -76,15 +76,23 @@
 
 \newcommand{\resumeSubSubheading}[2]{
     \item
-    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+    \begin{tabular*}{0.97\textwidth}{p{0.75\textwidth}@{\extracolsep{\fill}}r}
       \textit{\small#1} & \textit{\small #2} \\
     \end{tabular*}\vspace{-7pt}
 }
 
 \newcommand{\resumeProjectHeading}[2]{
     \item
-    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+    \begin{tabular*}{0.97\textwidth}{p{0.75\textwidth}@{\extracolsep{\fill}}r}
       \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumePublicationHeading}[2]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}{p{0.97\textwidth}}
+      \textbf{#1} \\
+      \textit{\small#2} \\
     \end{tabular*}\vspace{-7pt}
 }
 
@@ -132,7 +140,7 @@
       {Freelance}{}
       \resumeItemListStart
         \resumeItem{Full-stack freelance developer working with Node, TypeScript and React.}
-        \resumeItem{\emph{Node.js $\cdot$ Next.js $\cdot$ NestJS $\cdot$ TypeScript $\cdot$ React $\cdot$ Electron}}
+        \resumeItem{\emph{Node.js $\cdot$ Next.js $\cdot$ NestJS $\cdot$ TypeScript $\cdot$ React $\cdot$ Electron.js}}
       \resumeItemListEnd
 
     \resumeSubheading
@@ -188,7 +196,7 @@
 \section{Projects}
   \resumeSubHeadingListStart
     \resumeProjectHeading
-        {\textbf{Crystal Studio} $|$ \emph{Electron $\cdot$ Vite $\cdot$ React $\cdot$ TypeScript}}{https://github.com/ricccec/crystal-studio}
+        {\textbf{Crystal Studio} $|$ \emph{Electron $\cdot$ Vite $\cdot$ React $\cdot$ TypeScript}}{}
         \resumeItemListStart
           \resumeItem{A GBStudio-style IDE built on top of the pret/pokecrystal disassembly to edit game content and manage the full Game Boy ROM workflow.}
         \resumeItemListEnd
@@ -196,9 +204,9 @@
 
 \section{Publications}
   \resumeSubHeadingListStart
-    \resumeSubheading
-      {Application of Wireless Technologies in a Nuclear Plant: Evaluation of Electromagnetic Propagation With Different Computational Techniques}{}
-      {Journal of Nuclear Engineering and Radiation Science}{}
+    \resumePublicationHeading
+      {Application of Wireless Technologies in a Nuclear Plant: Evaluation of Electromagnetic Propagation With Different Computational Techniques}
+      {Journal of Nuclear Engineering and Radiation Science}
       \resumeItemListStart
         \resumeItem{Available at \emph{https://bit.ly/4n9w2qX}}
       \resumeItemListEnd
@@ -208,8 +216,9 @@
  \begin{itemize}[leftmargin=0.15in, label={}]
     \small{\item{
      \textbf{Languages}: Java, TypeScript, Python, C/C++, SQL, PHP, VHDL \\
-     \textbf{Frameworks}: Electron.js, Node.js, React \\
-     \textbf{Developer Tools}: Git, VS Code, Eclipse, Docker
+     \textbf{Frameworks}: React, Next.js, NestJS, Node.js, Electron.js, Tailwind CSS \\
+     \textbf{Databases \& Messaging}: MongoDB, RabbitMQ \\
+     \textbf{Developer Tools}: Git, Docker, Jenkins, SonarQube, VS Code, Eclipse
     }}
  \end{itemize}
 

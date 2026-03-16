@@ -51,7 +51,7 @@
         "NestJS",
         "TypeScript",
         "React",
-		"Electron"
+		"Electron.js"
       ]
     },
     {
@@ -151,11 +151,15 @@
     },
     {
       "name": "Frameworks",
-      "keywords": ["Electron", "Node.js", "React"]
+      "keywords": ["React", "Next.js", "NestJS", "Node.js", "Electron.js", "Tailwind CSS"]
     },
     {
-      "name": "Tools",
-      "keywords": ["Git", "VS Code", "Eclipse", "Docker"]
+      "name": "Databases & Messaging",
+      "keywords": ["MongoDB", "RabbitMQ"]
+    },
+    {
+      "name": "Developer Tools",
+      "keywords": ["Git", "Docker", "Jenkins", "SonarQube", "VS Code", "Eclipse"]
     }
   ],
   "meta": {
