@@ -7,7 +7,7 @@
     "email": "riccardo.cecchi2@gmail.com",
     "phone": "(+39) 329-0693335",
     "url": "https://github.com/ricccec/",
-    "summary": "Software engineer with a background in research, and algorithm/data structure design. After working mainly as a freelance artist in the years following Covid, I have now returned full-time to software engineering. Skilled in Node.js, Electron, TypeScript and Java, with a growing interest in assembly and retro gaming development. Experienced in leading small teams.",
+    "summary": "Software engineer with a background in research, and algorithm/data structure design. Skilled in Node.js, Electron, TypeScript and Java, with a growing interest in assembly and retro gaming development. Experienced in leading small teams.",
     "location": {
       "address": "Via delle Palme, 1",
       "postalCode": "63065",
@@ -32,10 +32,10 @@
       "location": "Start&Go s.r.l.",
       "position": "Software Engineer — AI Team",
       "startDate": "2026-03",
-      "summary": "Software engineer in the AI team focusing on Assistant-UI, shadcn, and UI/UX for chatbots.",
+      "summary": "Software engineer in the AI team focusing on UI/UX for chatbots.",
       "highlights": [
         "Assistant-UI",
-        "shadcn",
+        "Shadcn",
         "Chatbots"
       ]
     },
@@ -44,26 +44,14 @@
       "position": "Freelance Developer",
       "startDate": "2020-01",
       "endDate": "2025-12",
-      "summary": "Full-stack freelance developer working with Node, TypeScript and React on client projects.",
+      "summary": "Full-stack freelance developer working with Node, TypeScript and React.",
       "highlights": [
         "Node.js",
         "Next.js",
         "NestJS",
         "TypeScript",
         "React",
-        "Docker"
-      ]
-    },
-    {
-      "location": "Self-employed",
-      "position": "Open Source Developer",
-      "startDate": "2025",
-      "summary": "Developed and maintained \"Crystal Studio\", an Electron + React IDE for the Pokémon Crystal disassembly project (pret/pokecrystal), focusing on ROM hacking workflows and creative tooling.",
-      "highlights": [
-        "Crystal Studio",
-        "Electron",
-        "React",
-        "TypeScript"
+		"Electron"
       ]
     },
     {

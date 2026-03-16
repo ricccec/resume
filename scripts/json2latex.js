@@ -273,12 +273,18 @@ if (Array.isArray(resume.publications)) {
 }
 
 // Skills
-const allSkills = (resume.skills || []).map(s => s.name || '');
-let skillsCompiled = `\\textbf{Languages}{: ${esc(allSkills.join(', '))} }`;
-if (allSkills.length === 0) {
-  skillsCompiled = `\\textbf{Languages}{: Java, TypeScript, Python, C/C++, SQL, PHP, VHDL } \\\\
-     \\textbf{Frameworks}{: Electron.js, Node.js, React} \\\\
-     \\textbf{Developer Tools}{: Git, VS Code, Eclipse}`;
+let skillsCompiled = '';
+if (Array.isArray(resume.skills) && resume.skills.length > 0) {
+  skillsCompiled = resume.skills.map(s => {
+    let name = s.name || '';
+    if (name === 'Tools') name = 'Developer Tools';
+    let keywords = (s.keywords || []).map(k => k === 'Electron' ? 'Electron.js' : k).join(', ');
+    return `\\textbf{${esc(name)}}: ${esc(keywords)}`;
+  }).join(' \\\\\n     ');
+} else {
+  skillsCompiled = `\\textbf{Languages}: Java, TypeScript, Python, C/C++, SQL, PHP, VHDL \\\\
+     \\textbf{Frameworks}: Electron.js, Node.js, React \\\\
+     \\textbf{Developer Tools}: Git, VS Code, Eclipse`;
 }
 
 // Location
