@@ -1,10 +1,55 @@
 # My Resume
 
-Read it <a href="https://ricccec.github.io/resume/" target="_blank">here</a> or download it <a href="https://ricccec.github.io/resume/assets/resume.pdf" target="_blank">here</a>.
+Read it <a href="https://ricccec.github.io/resume/" target="_blank">here</a> or download it <a href="https://ricccec.github.io/resume/assets/tex/resume.pdf" target="_blank">here</a>.
 
 This repository contains my resume in [JSON Resume](https://jsonresume.org/) format, along with related assets (photo, QR code, etc.). The resume is exported to HTML using the [Even](https://github.com/rbardini/jsonresume-theme-even) theme and to PDF using a custom theme.
 
 The custom theme was built in `theme-src/`, based on [Rafael Bardini's jsonresume-theme-even](https://github.com/rbardini/jsonresume-theme-even), with significant modifications to the styling and layout. The live preview editor also comes from his repository.
+
+## Prerequisites
+
+- **Node.js** (for all `npm run *` commands)
+- **A LaTeX distribution** (for `build:latex` and the full `export` pipeline)
+
+### Installing LaTeX on macOS
+
+**Option A — MacTeX** (full distribution, ~5 GB, no extra steps):
+```bash
+brew install --cask mactex-no-gui
+eval "$(/usr/libexec/path_helper)"   # make latexmk available in the current shell
+```
+
+**Option B — BasicTeX** (~100 MB, requires installing extra packages with `tlmgr`):
+
+1. Install BasicTeX:
+   ```bash
+   brew install --cask basictex
+   ```
+
+2. Open a **new terminal** (or run `eval "$(/usr/libexec/path_helper)"`) so `/Library/TeX/texbin` is on your `PATH`.
+
+3. Update tlmgr and install `latexmk` plus the packages used by `resume.tex`:
+   ```bash
+   sudo tlmgr update --self
+   sudo tlmgr install latexmk preprint titlesec marvosym enumitem hyperref fancyhdr
+   ```
+
+4. Verify:
+   ```bash
+   latexmk --version
+   ```
+
+### Installing LaTeX on Linux
+
+Debian / Ubuntu:
+```bash
+sudo apt-get install -y texlive texlive-latex-extra latexmk
+```
+
+Fedora / CentOS:
+```bash
+sudo dnf install -y texlive-scheme-medium latexmk
+```
 
 ## Quick Start
 
